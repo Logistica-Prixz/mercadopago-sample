@@ -1,0 +1,31 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+    title Prixz - Mercadopago
+  body
+    h1 Prixz - Mercadopago
+    h2 Instrucciones
+    p Puedes probar con las siguientes tarjetas:
+      ul
+        li Visa 4075 5957 1648 3764	
+        li MasterCard 5474 9254 3267 0366	
+        li Amex 3766 7520 5781 151
+    p Para probar distintas respuestas intenta agregando los siguentes prefijos en el nombre del titular
+      ul
+        li APRO: Pago aprobado
+        li CONT: Pago pendiente
+        li CALL: Rechazo llamar para autorizar
+        li FUND: Rechazo por monto insuficiente
+        li SECU: Rechazo por código de seguridad
+        li EXPI: Rechazo por fecha de expiración
+        li FORM: Rechazo por error en formulario
+        li OTHE: Rechazo general
+    h2 El siguiente botón inicia la secuencia de pago
+    p
+        form(action="/procesar-pago", method="post")
+          script(src='https://www.mercadopago.com.mx/integrations/v1/web-tokenize-checkout.js' data-public-key=publicKey data-transaction-amount=amount)

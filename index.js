@@ -2,14 +2,15 @@
 const config = require("./config.json");
 const express = require("express");
 const app = express();
-const MPRouter = require("./routes/MPRouter");
-const mpRouter = new MPRouter(config);
+const mpRouter = require("./routes/MPRouter")(config);
 
 app.set('view engine', 'pug');
 
 app.get("/", (req, res) => {
     console.log(req);
-    res.render("index", { publicKey: config.public_key, amount: config.amount });
+    let total = config.amount + (config.amount * 0.16) + 45 - 100;
+    console.log(total);
+    res.render("index", { publicKey: config.public_key, total: total, amount: config.amount, tax: config.amount * 0.16, shipping: 45, discount: 100 });
 });
 
 app.use(mpRouter);
